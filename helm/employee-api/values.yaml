@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: yadavprashant510/employee-api
-  tag: latest
+  tag: afaa02bbe81c2d76eb39b606bb481ed7f34d11f7
   pullPolicy: IfNotPresent
 
 service:
