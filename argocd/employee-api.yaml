@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: employee-api
+  namespace: argocd
+
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/yadavprashant510/employee-platform.git
+    targetRevision: feature/argocd-bootstrap
+    path: helm/employee-api
+
+    helm:
+      valueFiles:
+        - values.yaml
+        - ../../environments/dev/values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: employee-ns
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
