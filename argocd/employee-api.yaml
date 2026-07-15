@@ -10,7 +10,7 @@ spec:
 
   source:
     repoURL: https://github.com/yadavprashant510/employee-platform.git
-    targetRevision: feature/argocd-bootstrap
+    targetRevision: main
     path: helm/employee-api
 
     helm:
