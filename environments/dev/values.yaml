@@ -7,3 +7,5 @@ ingress:
 environment: dev
 namespace:
   name: dev-employee-ns
+autoscaling:
+  enabled: false
