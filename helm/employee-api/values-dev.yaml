@@ -7,3 +7,5 @@ autoscaling:
 rbac:
 
   create: false
+namespace:
+  name: dev-employee-ns

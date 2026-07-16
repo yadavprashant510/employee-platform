@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 
 metadata:
-  name: employee-api
+  name: prod-employee-api
   namespace: argocd
 
 spec:
@@ -16,11 +16,11 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - ../../environments/dev/values.yaml
+        - ../../environments/prod/values.yaml
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: employee-ns
+    namespace: prod-employee-ns
 
   syncPolicy:
     automated:

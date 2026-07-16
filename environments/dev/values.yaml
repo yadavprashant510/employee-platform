@@ -1,3 +1,9 @@
 image:
   repository: yadavprashant510/employee-api
   tag: "807f663b578a3f32ce68a6f92cc49257e4ed05c0"
+replicaCount: 1
+ingress:
+  host: employee-dev.local
+environment: dev
+namespace:
+  name: dev-employee-ns

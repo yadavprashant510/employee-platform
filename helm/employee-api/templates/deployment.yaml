@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "employee-api.name" . }}
+  name: {{ include "employee-api.fullname" . }}
   namespace: {{ .Values.namespace.name }}
   labels:
     {{- include "employee-api.labels" . | nindent 4 }}
@@ -12,17 +12,17 @@ spec:
       {{- include "employee-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      name: employee-api-pod
+      name: {{ include "employee-api.fullname" . }}-pod
       labels:
         {{- include "employee-api.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ if .Values.serviceAccount.create }}
-            {{ include "employee-api.name" . }}-svc-account
+            {{ include "employee-api.fullname" . }}-svc-account
             {{ else }}
             {{ .Values.serviceAccount.name }}
             {{ end }}
       containers:
-      - name: {{ include "employee-api.name" . }}-container
+      - name: {{ include "employee-api.fullname" . }}-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
@@ -71,10 +71,10 @@ spec:
           value: "normal"
         envFrom:
         - configMapRef:
-            name: {{ include "employee-api.name" . }}-config
+            name: {{ include "employee-api.fullname" . }}-config
 
         - secretRef:
-            name: {{ include "employee-api.name" . }}-secret
+            name: {{ include "employee-api.fullname" . }}-secret
         volumeMounts:
           - name: employee-storage
             mountPath: /app/data
@@ -83,6 +83,6 @@ spec:
       volumes:
         - name: employee-storage
           persistentVolumeClaim:
-            claimName: {{ include "employee-api.name" . }}-pvc
+            claimName: {{ include "employee-api.fullname" . }}-pvc
         - name: tmp
           emptyDir: {}

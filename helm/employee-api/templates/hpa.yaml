@@ -3,7 +3,7 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 
 metadata:
-  name: {{ include "employee-api.name" . }}-hpa
+  name: {{ include "employee-api.fullname" . }}-hpa
   namespace: {{ .Values.namespace.name }}
 
 spec:
@@ -11,7 +11,7 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "employee-api.name" . }}
+    name: {{ include "employee-api.fullname" . }}
 
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}

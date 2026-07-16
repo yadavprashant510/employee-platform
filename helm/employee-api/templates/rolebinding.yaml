@@ -4,7 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
 metadata:
-  name: {{ include "employee-api.name" . }}-binding
+  name: {{ include "employee-api.fullname" . }}-binding
   namespace: {{ .Values.namespace.name }}
 
 subjects:
@@ -19,6 +19,6 @@ roleRef:
 
   kind: Role
 
-  name: {{ include "employee-api.name" . }}-role
+  name: {{ include "employee-api.fullname" . }}-role
 
 {{- end }}

@@ -4,7 +4,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 
 metadata:
-  name: {{ include "employee-api.name" . }}-role
+  name: {{ include "employee-api.fullname" . }}-role
   namespace: {{ .Values.namespace.name }}
 
 rules:

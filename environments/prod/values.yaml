@@ -1,3 +1,10 @@
 image:
   repository: yadavprashant510/employee-api
-  tag: latest
+  tag: 807f663b578a3f32ce68a6f92cc49257e4ed05c0
+
+environment: prod
+namespace:
+  name: prod-employee-ns
+replicaCount: 5
+ingress:
+  host: employee-prod.local

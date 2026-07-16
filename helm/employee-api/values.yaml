@@ -10,7 +10,7 @@ service:
   port: 80
   targetPort: 5000
 namespace:
-  name: employee-ns
+  name: dev-employee-ns
 container:
   port: 5000
 

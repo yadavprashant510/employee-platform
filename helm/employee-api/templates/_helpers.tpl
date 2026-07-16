@@ -11,7 +11,7 @@ Create Full Name
 */}}
 
 {{- define "employee-api.fullname" -}}
-{{ printf "%s-%s" .Release.Name (include "employee-api.name" .) }}
+{{ .Release.Name }}
 {{- end }}
 
 {{/*
