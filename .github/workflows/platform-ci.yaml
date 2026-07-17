@@ -1,0 +1,57 @@
+name: Helm chart Validation
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  helm-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Helm Lint
+        run: helm lint helm/employee-api
+
+      - name: Validate DEV Environment
+        run: |
+          helm template \
+          dev-employee-api \
+          ./helm/employee-api \
+          -f environments/dev/values.yaml > /dev/null
+
+      - name: Validate PROD Environment
+        run: |
+          helm template \
+          prod-employee-api \
+          ./helm/employee-api \
+          -f environments/prod/values.yaml > /dev/null
+
+      - name: Verify DEV Namespace
+        run: |
+          helm template \
+          dev-employee-api \
+          ./helm/employee-api \
+          -f environments/dev/values.yaml | grep "dev-employee-ns"
+      - name: Verify PROD Namespace
+        run: |
+          helm template \
+          prod-employee-api \
+          ./helm/employee-api \
+          -f environments/prod/values.yaml | grep "prod-employee-ns"
