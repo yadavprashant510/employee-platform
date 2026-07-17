@@ -5,6 +5,6 @@ image:
 environment: prod
 namespace:
   name: prod-employee-ns
-replicaCount: 5
+replicaCount: 3
 ingress:
   host: employee-prod.local
