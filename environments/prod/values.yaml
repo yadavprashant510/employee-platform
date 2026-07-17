@@ -1,6 +1,6 @@
 image:
   repository: yadavprashant510/employee-api
-  tag: "6806754cc167d97bcb3dc55b8e21e4a3a6c9b0a6"
+  tag: "74c94143a30ec1d9e5486b9dcb6751175548814e"
 
 environment: prod
 namespace:
