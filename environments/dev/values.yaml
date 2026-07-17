@@ -1,6 +1,6 @@
 image:
   repository: yadavprashant510/employee-api
-  tag: "0b717e83ebf19b9738da3206949535b82ddb50a8"
+  tag: "6806754cc167d97bcb3dc55b8e21e4a3a6c9b0a6"
 replicaCount: 1
 ingress:
   host: employee-dev.local
